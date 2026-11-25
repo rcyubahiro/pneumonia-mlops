@@ -1,0 +1,22 @@
+# Render Blueprint: New + > Blueprint > pick this repo.
+# NOTE: free instances have an ephemeral disk - uploads/retrained models are lost on restart.
+# Commit models/pneumonia_cnn.h5 so the API has a model at boot.
+services:
+  - type: web
+    name: pneumonia-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile.api
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - { key: AUTO_RETRAIN, value: "false" }
+      - { key: RETRAIN_THRESHOLD, value: "50" }
+
+  - type: web
+    name: pneumonia-ui
+    runtime: docker
+    dockerfilePath: ./Dockerfile.ui
+    plan: free
+    envVars:
+      - key: API_URL
+        fromService: { type: web, name: pneumonia-api, property: hostport }   # replace with the full https URL if needed

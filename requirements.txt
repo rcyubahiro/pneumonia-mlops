@@ -1,0 +1,7 @@
+# Everything needed locally (training, notebook, UI, load testing)
+-r requirements-api.txt
+-r requirements-ui.txt
+kaggle>=1.6
+seaborn>=0.13
+jupyter>=1.0
+locust>=2.24
