@@ -27,3 +27,5 @@ RETRAIN_THRESHOLD = int(os.getenv("RETRAIN_THRESHOLD", "50"))
 AUTO_RETRAIN = os.getenv("AUTO_RETRAIN", "false").lower() == "true"
 RETRAIN_BASE_SAMPLES = int(os.getenv("RETRAIN_BASE_SAMPLES", "4000"))  # old data replayed to avoid forgetting
 RETRAIN_EPOCHS = int(os.getenv("RETRAIN_EPOCHS", "5"))
+
+PRETRAINED = os.getenv("PRETRAINED", "true").lower() == "true"   # ImageNet weights for MobileNetV2
