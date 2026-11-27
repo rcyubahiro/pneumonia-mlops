@@ -1,0 +1,10 @@
+cat > .dockerignore <<'EOF'
+.venv
+.git
+data/train
+data/test
+data/_raw
+results
+__pycache__
+*.ipynb
+EOF
