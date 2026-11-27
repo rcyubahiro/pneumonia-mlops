@@ -3,7 +3,7 @@
 Image classification (**NORMAL** vs **PNEUMONIA** chest X-rays) to support faster screening where radiologists are scarce, with a full ML lifecycle:
 data acquisition → preprocessing → training → testing → API → UI → retraining → Docker deployment → load testing.
 
-- 🎥 **Video demo (YouTube):** `TODO: paste link`
+- 🎥 **Video demo (YouTube):** https://youtu.be/hOM3wb-3nWM
 - 📦 **GitHub repo:** https://github.com/rcyubahiro/pneumonia-mlops
 - 🐳 **Dockerised UI:** run `docker compose up --build`, then open http://localhost:8501 (API docs at http://localhost:8080/docs)
 
