@@ -67,7 +67,17 @@ def make_dataset(paths, labels, training: bool):
     ds = tf.data.Dataset.from_tensor_slices((list(map(str, paths)), np.asarray(labels, dtype=np.float32)))
     if training:
         ds = ds.shuffle(len(paths), seed=config.SEED, reshuffle_each_iteration=True)
-    return ds.map(_load, num_parallel_calls=tf.data.AUTOTUNE).batch(config.BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
+    ds = ds.map(_load, num_parallel_calls=tf.data.AUTOTUNE)
+    if training:
+        # contrast/brightness jitter for robustness to different X-ray sources
+        # (done in the data pipeline, not as model layers, so the saved .h5 stays reloadable)
+        def _augment(img, label):
+            img = tf.image.random_contrast(img, 0.8, 1.2)
+            img = tf.image.random_brightness(img, 20.0)
+            return tf.clip_by_value(img, 0.0, 255.0), label
+
+        ds = ds.map(_augment, num_parallel_calls=tf.data.AUTOTUNE)
+    return ds.batch(config.BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
 
 
 # ---------- interpretable features for the visualisations ----------

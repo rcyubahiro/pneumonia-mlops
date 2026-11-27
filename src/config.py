@@ -17,7 +17,7 @@ METRICS_PATH = MODELS_DIR / "metrics.json"
 
 # Alphabetical order == label index. Model output is P(PNEUMONIA) (label 1 = positive class).
 CLASS_NAMES = ["NORMAL", "PNEUMONIA"]
-IMG_SIZE = (128, 128)
+IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 SEED = 42
 

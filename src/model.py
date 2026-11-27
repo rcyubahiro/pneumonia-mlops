@@ -42,7 +42,7 @@ def build_model(lr: float = 1e-3, pretrained: bool | None = None):
     return model
 
 
-def unfreeze_top(model, n_layers: int = 40):
+def unfreeze_top(model, n_layers: int = 60):
     """Phase 2: unfreeze the top of the backbone (BatchNorm stays frozen) for fine-tuning."""
     from tensorflow import keras
 
@@ -147,5 +147,5 @@ def train_initial(epochs: int = 15):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--epochs", type=int, default=15)
+    ap.add_argument("--epochs", type=int, default=20)
     train_initial(ap.parse_args().epochs)
