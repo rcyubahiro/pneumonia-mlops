@@ -1,0 +1,13 @@
+cat > .gitignore <<'EOF'
+__pycache__/
+.venv/
+.ipynb_checkpoints/
+data/train/
+data/test/
+data/_raw/
+data/uploads/*/
+data/uploads.db
+results/
+models/pneumonia_cnn_prev.h5
+.env
+EOF
